@@ -1,0 +1,151 @@
+[
+  {
+    "url": "http://payment/accounts/all",
+    "response": [
+      {
+        "id": 1,
+        "number_account": "29121998",
+        "frozen": 0,
+        "debt": "0.00",
+        "balance": "100000.00",
+        "date_opening": "2019-11-17",
+        "date_closing": "2022-11-17",
+        "type_credit_id": null,
+        "user_id": 1,
+        "created_at": null,
+        "updated_at": null,
+        "user": {
+          "id": 1,
+          "name": "Банк",
+          "email": "bank@mail.ru",
+          "phone": null,
+          "created_at": null,
+          "updated_at": null
+        },
+        "type_credit": null
+      }
+    ],
+    "method": "GET"
+  },
+  {
+    "url": "http://payment/api/applications/add",
+    "response": {
+      "income": "40000",
+      "place_job": "место работы",
+      "resident_address": "адрес проживания",
+      "type_account_id": 1,
+      "type_credit_id": null,
+      "type_application_id": null,
+      "user_id": 5,
+      "updated_at": "2019-12-08 07:06:38",
+      "created_at": "2019-12-08 07:06:38",
+      "id": 1
+    },
+    "method": "POST"
+  },
+  {
+    "url": "http://payment/api/applications/",
+    "response": [
+      {
+        "id": 1,
+        "income": "40000.00",
+        "place_job": "место работы",
+        "resident_address": "адрес проживания",
+        "type_account_id": 1,
+        "user_id": 5,
+        "type_application_id": null,
+        "created_at": "2019-12-08 07:06:38",
+        "updated_at": "2019-12-08 07:06:38",
+        "type_credit_id": null,
+        "type_account": {
+          "id": 1,
+          "name": "Дебитовый",
+          "created_at": null,
+          "updated_at": null
+        },
+        "type_application": null,
+        "type_credit": null,
+        "user": {
+          "id": 5,
+          "name": "человек",
+          "email": "qwe@mail.ru",
+          "phone": "+ 7 982 978-95-83",
+          "created_at": "2019-12-08 06:42:14",
+          "updated_at": "2019-12-08 06:42:14"
+        }
+      }
+    ],
+    "method": "GET"
+  },
+  {
+    "url": "http://payment/api/applications/approval",
+    "response": {
+      "number_account": 1021,
+      "frozen": false,
+      "debt": 0,
+      "balance": 100000,
+      "date_opening": "2019-12-08T07:29:22.988461Z",
+      "date_closing": "2022-12-08T07:29:22.988468Z",
+      "type_credit_id": null,
+      "user_id": 5,
+      "updated_at": "2019-12-08 07:29:22",
+      "created_at": "2019-12-08 07:29:22",
+      "id": 2
+    },
+    "method": "POST"
+  },
+  {
+    "url": "http://payment/api/payment/add",
+    "response": {
+      "sender_id": 2,
+      "recipient_id": 1,
+      "sum": 500,
+      "date": "2019-12-08T07:45:46.083984Z",
+      "updated_at": "2019-12-08 07:45:46",
+      "created_at": "2019-12-08 07:45:46",
+      "id": 1
+    },
+    "method": "POST"
+  },
+  {
+    "url": "http://payment/api/payment/",
+    "response": [
+      {
+        "id": 1,
+        "sender_id": 2,
+        "recipient_id": 1,
+        "sum": "500.00",
+        "date": "2019-12-08",
+        "created_at": "2019-12-08 07:45:46",
+        "updated_at": "2019-12-08 07:45:46",
+        "sender": {
+          "id": 2,
+          "number_account": "1021",
+          "frozen": 0,
+          "debt": "0.00",
+          "balance": "99500.00",
+          "date_opening": "2019-12-08",
+          "date_closing": "2022-12-08",
+          "type_credit_id": null,
+          "user_id": 5,
+          "created_at": "2019-12-08 07:29:22",
+          "updated_at": "2019-12-08 07:45:46"
+        },
+        "recipient": {
+          "id": 1,
+          "number_account": "29121998",
+          "frozen": 0,
+          "debt": "0.00",
+          "balance": "100500.00",
+          "date_opening": "2019-11-17",
+          "date_closing": "2022-11-17",
+          "type_credit_id": null,
+          "user_id": 1,
+          "created_at": null,
+          "updated_at": "2019-12-08 07:45:46"
+        }
+      }
+    ],
+    "method": "GET"
+  }
+]
