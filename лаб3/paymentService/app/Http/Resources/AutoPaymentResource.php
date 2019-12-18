@@ -15,11 +15,13 @@ class AutoPaymentResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'sender' => $this->senderAP['number_account'],
             'recipient' => $this->recipientAP['number_account'],
             'sum' => $this->sum,
             'date' => $this->date,
             'type_autopayment' => $this->typeAP['name'],
+            'frozen' => $this->frozen,
         ];
     }
 }

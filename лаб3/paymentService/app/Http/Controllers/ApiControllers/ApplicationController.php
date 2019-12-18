@@ -35,21 +35,22 @@ class ApplicationController extends Controller
         if ($request->type_credit_id != null) {
             $data['type_credit_id'] = $request->type_credit_id;
         }
-//        dd($data);
         $application = Application::create($data);
         return $application;
     }
 
-    public function getAddApplication(){
-        $typeApplication = TypeApplication::all();
+    public function getCredit(){
         $typeCredit = TypeCredit::all();
+        return $typeCredit;
+    }
+
+    public function getAccount(){
         $typeAccount = TypeAccount::all();
-        $data = [
-            'typeApplication' => $typeApplication,
-            'typeCredit' => $typeCredit,
-            'typeAccount' => $typeAccount,
-        ];
-        return $data;
+        return $typeAccount;
+    }
+
+    public function Application(){
+        return view('application');
     }
 
     public function all()
@@ -65,7 +66,6 @@ class ApplicationController extends Controller
         if($request->approval == false){
             Application::where('id', $request->id)
                 ->update(['type_application_id' => 2]);
-            return false;
         }else{
             Application::where('id', $request->id)
                 ->update(['type_application_id' => 1]);
@@ -73,7 +73,7 @@ class ApplicationController extends Controller
                 ->with('typeCredit')
                 ->first();
             $data = [
-                'number_account' => rand(1000, 9999),
+                'number_account' => uniqid().rand(1000, 9999),
                 'frozen' => false,
                 'debt' => 0,
                 'balance' => 100000,
@@ -86,7 +86,6 @@ class ApplicationController extends Controller
                 $data['balance'] = $application->typeCredit->limit;
             }
             $account = Account::create($data);
-            return $account;
         }
     }
 }

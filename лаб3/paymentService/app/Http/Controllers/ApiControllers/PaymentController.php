@@ -27,10 +27,18 @@ class PaymentController extends Controller
 
     public function getAddPayment()
     {
-        $accounts = Account::where(['user_id', Auth::id()], ['frozen', false])
+        $accounts = Account::where([['user_id', Auth::id()], ['frozen', false]])
             ->with('typeCredit')
             ->get();
         return $accounts;
+    }
+
+    public function Payment(){
+        return view('payment');
+    }
+
+    public function Add(){
+        return view('paymentAdd');
     }
 
     public function addPayment(AddPaymentRequest $request)
@@ -53,7 +61,7 @@ class PaymentController extends Controller
             Account::where('id', $account->id)
                 ->update(['balance' => $ost]);
             Account::where('id', $recipient_account->id)
-                ->update(['balance' => $account->balance + $request->transactions]);
+                ->update(['balance' => $recipient_account->balance + $request->transactions]);
         } else {
             $percent = $account->typeCredit->percent;
             $debt = $request->transactions + $request->transactions * ($percent / 100);

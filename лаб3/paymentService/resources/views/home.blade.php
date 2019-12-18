@@ -1,23 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    @if(\Illuminate\Support\Facades\Auth::id() == 1)
+        <application token={{\Illuminate\Support\Facades\Auth::user()->api_token}}></application>
+    @else
+        <account token={{\Illuminate\Support\Facades\Auth::user()->api_token}}></account>
+{{--        <router-view to=/application/add" exact></router-view>--}}
+    @endif
+    <router-view></router-view>
 @endsection

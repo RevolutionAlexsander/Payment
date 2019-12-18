@@ -22,19 +22,22 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::group(['prefix' => 'applications'], function () {
             Route::get('/', 'ApplicationController@all');
             Route::post('/approval', 'ApplicationController@approvalApplication');
-            Route::get('/add', 'ApplicationController@getAddApplication');
+            Route::get('/typeCredit', 'ApplicationController@getCredit');
+            Route::get('/typeAccount', 'ApplicationController@getAccount');
             Route::post('/add', 'ApplicationController@addApplication');
         });
         Route::group(['prefix' => 'payment'], function () {
             Route::get('/', 'PaymentController@historyPayment');
-            Route::get('/add', 'PaymentController@getAddPayment');
+            Route::get('/account', 'PaymentController@getAddPayment');
             Route::post('/add', 'PaymentController@addPayment');
         });
         Route::group(['prefix' => 'autopayment'], function () {
             Route::get('/', 'AutoPaymentController@all');
-            Route::get('/add', 'AutoPaymentController@getAddAutoPayment');
-            Route::post('/add', 'PaymentController@addAutoPayment');
-            Route::post('/frozen', 'PaymentController@frozenAutoPayment');
+            Route::get('/account', 'AutoPaymentController@getAccount');
+            Route::get('/type', 'AutoPaymentController@getType');
+            Route::post('/add', 'AutoPaymentController@addAutoPayment');
+            Route::post('/frozen', 'AutoPaymentController@frozenAutoPayment');
+            Route::post('/noFrozen', 'AutoPaymentController@noFrozenAutoPayment');
         });
     });
 });

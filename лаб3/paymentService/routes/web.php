@@ -18,4 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/applications/add', 'application');
+Route::get('/applications/add', 'ApiControllers\ApplicationController@Application');
+Route::get('/payments', 'ApiControllers\PaymentController@Payment');
+Route::get('/payments/add', 'ApiControllers\PaymentController@Add');
+Route::get('/autopayments', 'ApiControllers\AutoPaymentController@AutoPayment');
+Route::get('/autopayments/add', 'ApiControllers\AutoPaymentController@addAuto');
 

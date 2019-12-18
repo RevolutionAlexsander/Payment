@@ -24,7 +24,6 @@ class ApprovalApplicationRequest extends FormRequest
     public function rules()
     {
         return [
-            'api_token' => 'required',
             'approval' => 'required|boolean',
             'id' => 'required|integer',
         ];

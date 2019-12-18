@@ -23,12 +23,19 @@ class AutoPaymentController extends Controller
         },
             'recipientAP',
             'typeAP'])
-            ->where('frozen', false)
             ->get();
         return AutoPaymentResource::collection($payment);
     }
 
-    public function getAddAutoPayment()
+    public function AutoPayment(){
+        return view('autopayment');
+    }
+
+    public function addAuto(){
+        return view('addautopayment');
+    }
+
+    public function getAccount()
     {
         $accounts = Account::where([
             ['user_id', Auth::id()],
@@ -36,26 +43,25 @@ class AutoPaymentController extends Controller
         ])
             ->with('typeCredit')
             ->get();
+        return $accounts;
+    }
+
+    public function getType()
+    {
         $type = TypeAutoPayment::all();
-        $data = [
-            'accounts' => $accounts,
-            'type' => $type,
-        ];
-        return $data;
+        return $type;
     }
 
     public function frozenAutoPayment(FrozenAutoPaymentRequest $request)
     {
         Autopayment::where('id', $request->id)
             ->update(['frozen' => true]);
-        $payment = Autopayment::with(['senderAP' => function($query){
-            $query->where('user_id', Auth::id());
-        },
-            'recipientAP',
-            'typeAP'])
-            ->where('frozen', false)
-            ->get();
-        return AutoPaymentResource::collection($payment);
+    }
+
+    public function noFrozenAutoPayment(FrozenAutoPaymentRequest $request)
+    {
+        Autopayment::where('id', $request->id)
+            ->update(['frozen' => false]);
     }
 
     public function addAutoPayment(AddAutoPaymentRequest $request)

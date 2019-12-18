@@ -2,9 +2,10 @@
     <div>
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-10">
-                <!--                <a href="/applications/add" class="btn btn-success">Создание счета</a>-->
-                <!--                <a href="/payments" class="btn btn-success">Платежи</a>-->
-                <div><h1>Счета</h1></div>
+                <a href="/payments/add" class="btn btn-success">Добавить платеж</a>
+                <a href="/home" class="btn btn-success">Счета</a>
+                <a href="/autopayments" class="btn btn-success">Автоплатежи</a>
+                <div><h1>История платежей</h1></div>
                 <div>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -53,6 +54,7 @@
             app.payments = response.data.data;
         },
     }
+
 </script>
 
 <style scoped>
